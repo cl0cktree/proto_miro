@@ -9,6 +9,54 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileLinks = document.querySelectorAll(".nav-mobile-links a");
     const bodyEl = document.body;
 
+    const hero = document.getElementById('hero');
+    // const slide_img = main_slide.querySelectorAll('.main_slide img');
+    // let max_leng = main_slide.querySelectorAll('.main_slide img').length;
+
+    let max_leng;
+    let autospeed=3000;
+    let i=0;
+
+    function start_s(){
+        
+        // let count = 0;
+        // function checkImage(index) {
+        //     // 파일명 규칙에 맞게 패딩 처리 (예: slide_01, slide_02...)            
+        //     const fileName = `slide_0${index}.PNG`;
+        //     const img = new Image();
+        //     let idx_count;
+        //     img.onload = function() {
+        //         count++;
+        //         console.log('in index = '+index);
+        //         if(index<4) {
+        //             idx_count = index;
+        //              console.log('in idx_count = '+idx_count);
+        //         }
+        //         checkImage(index + 1); // 다음 이미지 확인
+        //     };
+        //     img.onerror = function() {
+        //         // 이미지를 찾을 수 없으면(404) 종료하고 최종 개수 출력
+        //         console.log(`확인된 총 slide_0 파일 개수: ${count}`);
+        //     };
+        //     img.src = `./images/slide/${fileName}`;
+        //     max_leng = count;
+        // }
+        // 1번 파일부터 검사 시작
+        // checkImage(1);
+
+        interval = setInterval(function(){
+            if(i<4){
+                i++;
+                // console.log('leng_num = '+i);
+            }else{
+                i = 1;
+            }
+            hero.style.backgroundImage='url(./images/slide/slide_0'+i+'.PNG)';
+        },autospeed)
+    }
+    start_s();
+    // console.log('max_leng = '+max_leng);
+
     // 모바일 메뉴 제어 통합 개폐 함수
     const toggleMobileMenu = () => {
         menuToggle.classList.toggle("active");
