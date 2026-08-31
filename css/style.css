@@ -1,0 +1,358 @@
+/* 전역 스타일 및 초기화 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nanum Gothic','NanumGothic','Noto Sans KR', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fafafa;
+    scroll-behavior: smooth;
+}
+
+/* 모바일 메뉴 전개 시 바디 스크롤 차단용 유틸 클래스 */
+body.no-scroll {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* 상단 고정 네비게이션 헤더 영역 */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+header .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    /* color: #1e3c72; */
+    color: #000;
+}
+
+header .nav-desktop a {
+    text-decoration: none;
+    color: #555;
+    margin-left: 30px;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+header .nav-desktop a:hover {
+    color: #1e3c72;
+}
+
+/* 모바일 햄버거 토글러 기본값 (데스크톱에선 미표시) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #1e3c72;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 애니메이션 분기처리를 위한 햄버거 활성화 크로스 트랜지션 스타일 */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* 모바일 슬라이드 드로어 네비게이션 인프라 */
+.nav-mobile {
+    position: fixed;
+    top: 0;
+    right: -300px; /* 완전 격리 배치 */
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-mobile.open {
+    right: 0; /* 우측 화면 진입 */
+}
+
+.nav-mobile-header {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.nav-mobile-header .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e3c72;
+}
+
+.nav-mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.nav-mobile-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.nav-mobile-links a:hover {
+    color: #1e3c72;
+}
+
+/* 모바일 오픈 시 배경을 덮는 불투명 Dim 레이어 */
+.nav-mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1040;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.nav-mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 히어로 디자인 구조부 */
+#hero {
+    position: relative;
+    height: 100vh;
+    background-image: url(../images/slide/slide_01.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+#hero:after{content:""; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.75); z-index:1}
+
+
+.hero-content {
+    position: relative;
+    margin-top: 120px;
+    z-index: 2;
+}
+
+.hero-content .sub-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    /* color: #f1c40f; */
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.hero-content .main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.hero-content .hero-desc {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #f1c40f;
+    color: #1e3c72;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background-color: #f39c12;
+}
+
+/* 컴포넌트 내부 배치 전역 공용 프레임 구조 */
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 10px; color: #222; }
+.section-subtitle { text-align: center; color: #777; margin-bottom: 50px; font-size: 1.1rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.card {
+    background-color: #fff; padding: 40px 30px; border-radius: 12px; text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+.card .icon { font-size: 3rem; margin-bottom: 20px; }
+.card .icon.box { font-size: 3rem; margin-bottom: 20px; }
+.card .icon.box:before{ content: ""; display: block; background-size: cover; width: 100%; height: 100%; margin:0 auto;}
+.card .icon.box.mirro:before{width:50px; height:50px; background-image: url(../images/icons/icons8_mirro_100.png);  background-position: 0 0; }
+.card .icon.box.earth:before{width:50px; height:50px; background-image: url(../images/icons/icons8_earth_100.png);  background-position: 0 0; }
+.card .icon.box.dress:before{width:50px; height:50px; background-image: url(../images/icons/icons8_dress_100.png);  background-position: 0 0; }
+.card h3 { margin-bottom: 15px; font-size: 1.3rem; color: #1e3c72; }
+.card p { color: #666; font-size: 0.95rem; }
+
+.feature-block {
+    display: flex; align-items: center; gap: 50px; background: #fff;
+    padding: 50px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+}
+.feature-text h3 { font-size: 1.8rem; margin-bottom: 20px; color: #1e3c72; }
+.feature-text ul { list-style: none; }
+.feature-text ul li { margin-bottom: 12px; position: relative; padding-left: 25px; }
+.feature-text ul li::before { content: "✔"; position: absolute; left: 0; color: #f1c40f; font-weight: bold; }
+
+.feature-visual { flex-shrink: 0; width: 400px; height: 300px; }
+.avatar-box {
+    width: 100%; height: 100%; border: 2px dashed #2a5298; border-radius: 15px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background: #f0f4f8; position: relative; overflow: hidden;
+}
+.wireframe, .rendered { padding: 10px 20px; margin: 10px; font-weight: bold; border-radius: 5px; }
+.wireframe { background-color: #e1e8f0; color: #2a5298; border: 1px solid #2a5298; }
+.rendered { background-color: #2a5298; color: #fff; }
+
+#universe { background-color: #111; color: #fff; }
+#universe .section-title { color: #fff; }
+.world-card {
+    padding: 50px 20px; border-radius: 10px; text-align: center;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
+}
+.world-card:hover { background: #2a5298; transform: scale(1.05); }
+.world-card h4 { font-family: 'Cinzel', serif; font-size: 1.6rem; margin-bottom: 10px; color: #f1c40f; }
+
+.market-stats { display: flex; justify-content: space-around; text-align: center; margin-top: 30px; }
+.stat-item { padding: 20px; }
+.stat-number { font-size: 3.5rem; font-weight: 700; color: #1e3c72; display: inline-block; }
+.stat-unit { font-size: 1.5rem; font-weight: 700; color: #1e3c72; }
+.stat-item p { color: #555; margin-top: 10px; font-weight: 500; }
+
+.table-box h3, .chart-box h3 { font-size: 1.3rem; margin-bottom: 20px; color: #333; border-left: 4px solid #1e3c72; padding-left: 10px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+th, td { padding: 15px 20px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background-color: #1e3c72; color: white; }
+
+.funding-bar { display: flex; height: 45px; border-radius: 8px; overflow: hidden; margin-top: 40px; margin-bottom: 15px; }
+.bar-fill { display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.9rem; background-color: #2a5298; }
+.bar-fill.alternate { background-color: #f1c40f; color: #1e3c72; }
+.funding-note { font-size: 0.85rem; color: #777; }
+
+footer { background-color: #222; color: #888; text-align: center; padding: 40px 20px; font-size: 0.9rem; border-top: 1px solid #333; }
+
+/* ==========================================
+   탑버튼(Scroll Top Button) 커스텀 디자인
+   ========================================== */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #1e3c72; /* 메인 테마 블루 컬러 매칭 */
+    color: #ffffff;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    
+    /* 초기 은닉 상태 필터 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 스크롤 발생 시 자바스크립트로 활성화될 상태 클래스 */
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* 마우스 호버 시 미로미로 포인트 골드 컬러로 반전 스위치 */
+.scroll-top-btn:hover {
+    background-color: #f1c40f; 
+    color: #1e3c72;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(241, 196, 15, 0.3);
+}
+
+/* 📱 반응형 분기점 커스텀 레이아웃 미디어쿼리 (모바일 제어 로직 집중 탑재) */
+@media (max-width: 968px) {
+    header { padding: 20px 30px; }
+    
+    /* 기존 데스크톱 상단 우측 가로 정렬 링크 완전히 격리 탈거 */
+    header .nav-desktop { display: none; }
+    
+    /* 모바일 진입 시 토글 액추에이터 활성화 노출 */
+    .menu-toggle { display: flex; }
+
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 30px; }
+    .feature-block { flex-direction: column; padding: 30px; }
+    .feature-visual { width: 100%; }
+    .market-stats { flex-direction: column; gap: 30px; }
+    
+    .hero-content .main-title { font-size: 3rem; }
+    .hero-content .sub-title { font-size: 1.1rem; }
+}
